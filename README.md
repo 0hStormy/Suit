@@ -1,0 +1,1 @@
+Virtualization made stupid simple?
