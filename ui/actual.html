@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suit - Virtualization made stupid simple!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="root">
+        <h1>Suit</h1>
+        <p>Step 1: Pick a Distribution!</p>
+        <div class="box">
+            <div class="horizontal">
+                <p>Please select an OS:</p>
+                <select name="os" id="os">
+                    <option value="Linux Mint 22">Linux Mint 22</option><option value="Fedora 41 Workstation">Fedora 41 Workstation</option>
+                </select>
+            </div>
+            <p>If you're not sure what OS to start with, maybe try Linux Mint!</p>
+        </div>
+        <p>Step 2: Click Start!</p>
+        <button id="startButton">Start</button>
+        <p>Tip: for fullscreen, press <code>Ctl + Alt + F</code></p>
+    </div>
+    <script type="text/javascript" src="/eel.js"></script>
+    <script>
+        document.getElementById("startButton").onclick = function(){
+            let osPicker = document.getElementById("os");
+            let selectedOS = osPicker.options[osPicker.selectedIndex].text;
+            let selectedValue = osPicker.selectedIndex;
+            let preloader = document.createElement("img");
+            preloader.src = "preloader.svg";
+            this.replaceWith(preloader);
+            setTimeout(() => {
+                eel.startVM(selectedOS, selectedValue);
+                location.replace("actual.html")
+            }, 100);
+        }
+    </script>
+</body>
+</html>
